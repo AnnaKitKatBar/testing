@@ -45,18 +45,16 @@ function draw() {
 
   //change moving variables
    //Ball Movement
-   if(y - ballRadius < 0  || y + ballRadius > canvas.height)
+   if(y - ballRadius < 0  || y + ballRadius >= canvas.height)
       dy = -dy;
 
-   if(x - ballRadius < 0 || x + ballRadius > canvas.width)
+   if(x - ballRadius < 0 || x + ballRadius >= canvas.width)
       dx = -dx;
    
-   //Paddle Movement
-
-
-
    x += dx;
    y += dy;
+
+   //Paddle Movement
 }
 
 /*//event listeners
