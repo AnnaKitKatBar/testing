@@ -1,16 +1,12 @@
-//HTML elements
+//HTML canvas
 let canvas = document.getElementById("myCanvas");
 let ctx = canvas.getContext("2d");
-let wallBounceSND = document.createElement("audio");
 
-
-//drawing variables 
+//ball variables 
 let x = canvas.width/2;
 let y = canvas.height - 30;
 let dx = 2;
 let dy = -2;
-
-//ball variables
 let ballRadius = 10;
 
 //paddle variables
@@ -22,8 +18,23 @@ let padX = ((canvas.width - padWidth)/2);
 //var padRight = false;
 //var padLeft = false;
 
-//audio src init
-wallBounceSND.src = "./sounds/waterdrop.wav";
+
+////////////-----AUDIO THINGS-----//////////////
+///
+///
+function wallBounceSND() {
+   let wallBounce = document.createElement("audio");
+   wallBounce.src = "./sounds/waterdrop.wav";
+   wallBounce.play();
+}
+
+function padBounceSND() {
+   let padBounce = document.createElement("audio");
+   padBounce.src = "./sounds/sonarPing.wav";
+   padBounce.play();
+}  
+///
+/////////-----AUDIO THINGS END-----/////////
 
 
 function drawBall() {
@@ -53,13 +64,20 @@ function draw() {
    //Ball Wall Collision
    if(y - ballRadius < 0  || y + ballRadius >= canvas.height) {
       dy = -dy;
-      wallBounceSND.pause();
-      wallBounceSND.play();
+      wallBounceIndex = poolPlayer(wallBounceIndex, wallBounce, 5);
+      //wallBounce[0].play();
+      //wallBounce[1].play();
    }
    if(x - ballRadius < 0 || x + ballRadius >= canvas.width) {
       dx = -dx;
-      wallBounceSND.pause();
-      wallBounceSND.play();
+      wallBounceIndex = poolPlayer(wallBounceIndex, wallBounce, 5);
+      //wallBounce[2].play();
+      //wallBounce[3].play();
+   }
+
+   //Ball Paddle Collision
+   if(){
+   
    }
 
    
