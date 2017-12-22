@@ -20,24 +20,6 @@ var padRight = false;
 var padLeft = false;
 
 
-////////////-----AUDIO THINGS-----//////////////
-///
-///
-function wallBounceSND() {
-   let wallBounce = document.createElement("audio");
-   wallBounce.src = "./sounds/waterdrop.wav";
-   wallBounce.play();
-}
-
-function padBounceSND() {
-   let padBounce = document.createElement("audio");
-   padBounce.src = "./sounds/sonarPing.wav";
-   padBounce.play();
-}  
-///
-/////////-----AUDIO THINGS END-----/////////
-
-
 function drawBall() {
    ctx.beginPath();
    ctx.arc(x,y,ballRadius,0,Math.PI*2);
@@ -87,8 +69,6 @@ function draw() {
    
    x += dx;
    y += dy;
-
-   //Paddle Movement
 }
 
 //event listeners
