@@ -16,8 +16,8 @@ let padX = ((canvas.width - padWidth)/2);
 let padY = canvas.height - padHeight;
 
 //paddle control variables
-//var padRight = false;
-//var padLeft = false;
+var padRight = false;
+var padLeft = false;
 
 
 ////////////-----AUDIO THINGS-----//////////////
@@ -77,6 +77,12 @@ function draw() {
       dx = -dx;
       wallBounceSND();
    }
+
+   //Key Press for Paddle Movement
+   if(padRight && (padX + padWidth < canvas.width))
+      padX += 7;
+   if(padLeft && (padX > 0))
+      padX -= 7;
 
    
    x += dx;
