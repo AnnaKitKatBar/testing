@@ -4,15 +4,16 @@ let ctx = canvas.getContext("2d");
 
 //ball variables 
 let x = canvas.width/2;
-let y = canvas.height - 30;
+let y = canvas.height - 40;
 let dx = 2;
 let dy = -2;
 let ballRadius = 10;
 
 //paddle variables
 let padHeight = 10;
-let padWidth = 75;
+let padWidth = 100;
 let padX = ((canvas.width - padWidth)/2);
+let padY = canvas.height - padHeight;
 
 //paddle control variables
 //var padRight = false;
@@ -47,7 +48,7 @@ function drawBall() {
 
 function drawPaddle() {
    ctx.beginPath();
-   ctx.rect(padX, canvas.height-padHeight, padWidth, padHeight);
+   ctx.rect(padX, padY, padWidth, padHeight);
    ctx.fillStyle = "#0095DD";
    ctx.fill();
    ctx.closePath();
@@ -61,23 +62,20 @@ function draw() {
    drawPaddle();  
 
   //change moving variables
+   //Ball Paddle Collision
+   if(padY == (y + ballRadius) && (x >= padX && x <= padX + padWidth)) {
+      dy = -dy;
+      padBounceSND();
+   }
+
    //Ball Wall Collision
    if(y - ballRadius < 0  || y + ballRadius >= canvas.height) {
       dy = -dy;
-      wallBounceIndex = poolPlayer(wallBounceIndex, wallBounce, 5);
-      //wallBounce[0].play();
-      //wallBounce[1].play();
+      wallBounceSND();
    }
    if(x - ballRadius < 0 || x + ballRadius >= canvas.width) {
       dx = -dx;
-      wallBounceIndex = poolPlayer(wallBounceIndex, wallBounce, 5);
-      //wallBounce[2].play();
-      //wallBounce[3].play();
-   }
-
-   //Ball Paddle Collision
-   if(){
-   
+      wallBounceSND();
    }
 
    
@@ -87,7 +85,7 @@ function draw() {
    //Paddle Movement
 }
 
-/*//event listeners
+//event listeners
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
@@ -106,7 +104,7 @@ function keyUpHandler(e) {
    else if(e.keyCode == 37)
       padLeft = false;
 
-}*/
+}
 
 
 //time btw drawing
