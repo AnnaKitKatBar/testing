@@ -1,8 +1,5 @@
 //This is a file holding all the sound stuff for testGame
 
-////////////-----AUDIO THINGS-----//////////////
-///
-///
 function wallBounceSND() {
    let wallBounce = document.createElement("audio");
    wallBounce.src = "./sounds/waterdrop.wav";
@@ -14,7 +11,5 @@ function padBounceSND() {
    padBounce.src = "./sounds/sonarPing.wav";
    padBounce.play();
 }  
-///
-/////////-----AUDIO THINGS END-----/////////
 
 
