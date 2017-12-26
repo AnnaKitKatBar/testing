@@ -21,7 +21,7 @@ var padLeft = false;
 
 //brick variables
 let brickArr = [];
-let brickRow = 4;
+let brickRow = 5;
 let brickCol = 5;
 let maxBricks = brickRow * brickCol;
 let brickWidth = 50;
@@ -57,11 +57,14 @@ function drawPaddle() {
 }
 
 function drawBricks() {
+   console.log("drawBricks");
+
    for(let i = 0; i < maxBricks; i++) {
       if(brickArr[i]) {
          let deltaX = (i%brickCol)*brickWidth + (i%brickCol)*brickSpace;
-         let deltaY = (i%brickRow)*brickHeight + (i%brickRow)*brickSpace;
-      
+         //let deltaY = (i%brickRow)*brickHeight + (i%brickRow)*brickSpace;
+         let deltaY = Math.floor(i/brickCol)*(brickHeight + brickSpace);
+	 console.log(`${deltaX} ${deltaY}`)
          //draw the brick
          ctx.beginPath();
          ctx.rect(brickX + deltaX, brickY + deltaY, brickWidth, brickHeight);
