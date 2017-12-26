@@ -19,7 +19,27 @@ let padY = canvas.height - padHeight;
 var padRight = false;
 var padLeft = false;
 
+//brick variables
+let brickArr = [];
+let brickRow = 4;
+let brickCol = 5;
+let maxBricks = brickRow * brickCol;
+let brickWidth = 50;
+let brickHeight = 10;
+let brickSpace = 5;
+let brickX = (canvas.width/2) - (brickCol*brickWidth + (brickCol-1)*brickSpace)/2;
+let brickY = 10;
 
+console.log(maxBricks);
+
+//Init brickArr
+for(let i = 0; i < maxBricks; i++) {
+   brickArr[i] = true;
+   console.log("init for loop");
+}
+
+////--Drawing Functions START--////
+//
 function drawBall() {
    ctx.beginPath();
    ctx.arc(x,y,ballRadius,0,Math.PI*2);
@@ -36,18 +56,39 @@ function drawPaddle() {
    ctx.closePath();
 }
 
+function drawBricks() {
+   for(let i = 0; i < maxBricks; i++) {
+      if(brickArr[i]) {
+         let deltaX = (i%brickCol)*brickWidth + (i%brickCol)*brickSpace;
+         let deltaY = (i%brickRow)*brickHeight + (i%brickRow)*brickSpace;
+      
+         //draw the brick
+         ctx.beginPath();
+         ctx.rect(brickX + deltaX, brickY + deltaY, brickWidth, brickHeight);
+         ctx.fillStyle = "#0095DD";
+         ctx.fill();
+         ctx.closePath;
+      }
+   }
+
+}
+//
+////--Drawing Functions END--////
+
 function draw() {
    ctx.clearRect(0,0,canvas.width, canvas.height);
    
    //draw scene
    drawBall();
    drawPaddle();  
+   drawBricks();
 
   //change moving variables
    //Ball Paddle Collision
    if(padY == (y + ballRadius) && (x >= padX && x <= padX + padWidth)) {
       dy = -dy;
       padBounceSND();
+      console.log("Paddle ball hit");
    }
 
    //Ball Wall Collision
