@@ -29,8 +29,10 @@ let brickHeight = 10;
 let brickSpace = 5;
 let brickX = (canvas.width/2) - (brickCol*brickWidth + (brickCol-1)*brickSpace)/2;
 let brickY = 10;
+let brickHorizon = brickY + (brickHeight + brickSpace)*brickRow;
 
-console.log(maxBricks);
+
+//console.log(maxBricks);
 
 //Init brickArr
 for(let i = 0; i < maxBricks; i++) {
@@ -57,14 +59,12 @@ function drawPaddle() {
 }
 
 function drawBricks() {
-   console.log("drawBricks");
-
    for(let i = 0; i < maxBricks; i++) {
       if(brickArr[i]) {
-         let deltaX = (i%brickCol)*brickWidth + (i%brickCol)*brickSpace;
-         //let deltaY = (i%brickRow)*brickHeight + (i%brickRow)*brickSpace;
+         let deltaX = (i%brickCol)*(brickWidth + brickSpace);
          let deltaY = Math.floor(i/brickCol)*(brickHeight + brickSpace);
-	 console.log(`${deltaX} ${deltaY}`)
+	 //console.log(`${deltaX} ${deltaY}`)
+         
          //draw the brick
          ctx.beginPath();
          ctx.rect(brickX + deltaX, brickY + deltaY, brickWidth, brickHeight);
