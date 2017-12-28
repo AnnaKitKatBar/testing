@@ -31,7 +31,6 @@ let brickX = (canvas.width/2) - (brickCol*brickWidth + (brickCol-1)*brickSpace)/
 let brickY = 10;
 let brickHorizon = brickY + (brickHeight + brickSpace)*brickRow;
 
-
 //console.log(maxBricks);
 
 //Init brickArr
@@ -92,6 +91,24 @@ function draw() {
       dy = -dy;
       padBounceSND();
       console.log("Paddle ball hit");
+   }
+
+   //Ball Brick Collsion
+   let hitBrick = false;
+   for(let i = 0; i < maxBricks && !hitBrick; i++){
+      if(brickArr[i]){
+         let deltaY = brickY + Math.floor(i/brickCol)*(brickHeight + brickSpace) + brickHeight;
+         
+         if(y - ballRadius <= deltaY) {
+            dy = -dy;
+            wallBounceSND();
+            console.log("Brick Ball hit");
+            //console.log(`brickY = ${deltaY}\nballY = ${y - ballRadius}`);
+            hitBrick = true;
+         }
+      
+      }
+
    }
 
    //Ball Wall Collision
