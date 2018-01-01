@@ -98,8 +98,10 @@ function draw() {
    for(let i = 0; i < maxBricks && !hitBrick; i++){
       if(brickArr[i]){
          let deltaY = brickY + Math.floor(i/brickCol)*(brickHeight + brickSpace) + brickHeight;
-         
-         if(y - ballRadius <= deltaY) {
+         let x1 = brickX + (i%brickCol)*(brickWidth+brickSpace);
+         let x2 = x1 + brickWidth;
+  
+         if(y - ballRadius <= deltaY && x >= x1 && x <= x2) {
             dy = -dy;
             wallBounceSND();
             console.log("Brick Ball hit");
